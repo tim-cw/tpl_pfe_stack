@@ -1,16 +1,17 @@
-/** Componsante Main de TimTools */
-export default class Main {
-  /**
-   * Méthode constructeur
-   * @param {HTMLElement} element - Élément HTML sur lequel la composante est instanciée
-   */
-  constructor(element) {
-    this.element = element;
+import ComponentFactory from './ComponentFactory';
+import Icons from './utils/Icons';
+
+class Main {
+  constructor() {
     this.init();
   }
 
-  /**
-   * Méthode d'initialisation
-   */
-  init() {}
+  init() {
+    document.documentElement.classList.add('has-js');
+
+    new ComponentFactory();
+
+    Icons.load();
+  }
 }
+new Main();

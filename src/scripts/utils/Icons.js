@@ -1,15 +1,23 @@
 export default class Icons {
   static load(path) {
-    path = path || 'assets/icons.svg';
+    window.iconsPath = window.iconsPath || '';
+    path = path || iconsPath + 'assets/icons.svg';
     fetch(path)
       .then((res) => {
-        return res.text();
+        if (res.ok) {
+          return res.text();
+        } else {
+          throw new Error('Le fichier icons est introuvable.');
+        }
       })
       .then((data) => {
         const svg = document.createElement('div');
         svg.style.display = 'none';
         svg.innerHTML = data;
         document.body.appendChild(svg);
+      })
+      .catch((error) => {
+        console.log(`Une erreur est survenur : ${error.message}`);
       });
   }
 }
